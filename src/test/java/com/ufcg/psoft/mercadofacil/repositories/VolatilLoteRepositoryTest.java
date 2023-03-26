@@ -114,6 +114,34 @@ class VolatilLoteRepositoryTest {
         Assertions.assertNull(driver.update(loteNaoSalvo));
     }
 
+    @Test
+    @DisplayName("apagando apenas um lote")
+    void deveApagarUmLote() {
+        Lote lote1 = criaLote(1L);
+        driver.save(lote1);
+
+        Lote lote2 = criaLote(2L);
+        driver.save(lote2);
+
+        Assertions.assertEquals(driver.findAll().size(), 2);
+        driver.delete(lote1);
+        Assertions.assertEquals(driver.findAll().size(), 1);
+    }
+
+    @Test
+    @DisplayName("Apagando todos os lotes")
+    void deveApagarTodosOsLotes() {
+        Lote lote1 = criaLote(1L);
+        driver.save(lote1);
+
+        Lote lote2 = criaLote(2L);
+        driver.save(lote2);
+
+        Assertions.assertEquals(driver.findAll().size(), 2);
+        driver.deleteAll();
+        Assertions.assertEquals(driver.findAll().size(), 0);
+    }
+
     private Lote criaLote(Long idLote) {
         Produto produto = Produto.builder()
                 .id(3L)
@@ -129,32 +157,6 @@ class VolatilLoteRepositoryTest {
                 .build();
 
         return loteCreate;
-    }
-
-    @Test
-    void deveApagarUmLote() {
-        Lote lote1 = criaLote(1L);
-        driver.save(lote1);
-
-        Lote lote2 = criaLote(2L);
-        driver.save(lote2);
-
-        Assertions.assertEquals(driver.findAll().size(), 2);
-        driver.delete(lote1);
-        Assertions.assertEquals(driver.findAll().size(), 1);
-    }
-
-    @Test
-    void deveApagarTodosOsLotes() {
-        Lote lote1 = criaLote(1L);
-        driver.save(lote1);
-
-        Lote lote2 = criaLote(2L);
-        driver.save(lote2);
-
-        Assertions.assertEquals(driver.findAll().size(), 2);
-        driver.deleteAll();
-        Assertions.assertEquals(driver.findAll().size(), 0);
     }
 }
 
