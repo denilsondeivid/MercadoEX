@@ -127,6 +127,7 @@ class VolatilLoteRepositoryTest {
         driver.delete(lote1);
         Assertions.assertEquals(driver.findAll().size(), 1);
     }
+    //apenas um teste
 
     @Test
     @DisplayName("Apagando todos os lotes")
