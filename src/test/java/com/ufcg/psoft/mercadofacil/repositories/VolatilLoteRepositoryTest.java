@@ -144,11 +144,11 @@ class VolatilLoteRepositoryTest {
 
     private Lote criaLote(Long idLote) {
         Produto produto = Produto.builder()
-                .id(3L)
-                .nome("cafeteira")
-                .codigoBarra("91662593")
-                .fabricante("extra rap")
-                .preco(60)
+                .id(10L)
+                .nome("xoxo")
+                .codigoBarra("9145")
+                .fabricante("laura")
+                .preco(0.6)
                 .build();
         Lote loteCreate = Lote.builder()
                 .id(idLote)
